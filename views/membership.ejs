@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/header')%>
+<body>
+    <p>Membership Status: 
+        <span>
+            <%if(locals.user.ismember){%> 
+                Member
+            <% }else {%> 
+                Not a member
+            <% } %>
+        </span>
+
+    </p>
+    <%if(!locals.user.ismember){%>
+    <form action="/make-member" method = 'POST'>
+        <label for="passcode">Enter Passcode(Hint: abc)</label>
+        <input type="text" id = "passcode" name = "passcode">
+        <button type = 'submit'>Submit</button>
+    </form>
+    <% } else{ %>
+        <form action="/delete-member" method = 'POST'>
+        <button type = 'submit'>Remove Membership</button>
+        </form> <% } %>
+
+
+    <a href="/">Home</a>
+    
+</body>
+</html>

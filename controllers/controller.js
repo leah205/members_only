@@ -1,9 +1,11 @@
 const bcrypt = require("bcryptjs")
 const pool = require('../db/pool')
 const {body, validationResult} = require('express-validator')
-const passport = require("../authenticate")
+const passport = require("../passport")
+
 
 //validation
+
 
 const validateSignup = [
     body("first_name").trim().notEmpty().withMessage('First name is required'),
@@ -16,6 +18,11 @@ const validateSignup = [
     .custom((value, {req}) => {
         return value == req.body.password
     }).withMessage('Passwords must match')
+]
+
+const validatePasscode = [
+    body("passcode").trim()
+    .equals("abc")
 ]
 
 
@@ -64,4 +71,40 @@ module.exports.getLogout = (req, res, next) => {
         }
         res.redirect("/")
     })
+}
+
+module.exports.isAuth = async (req, res, next) => {
+    if(req.isAuthenticated()){
+        next()
+    } else {
+        res.redirect('/login')
+    }
+}
+
+module.exports.getMembership = (req, res) => {
+    res.render('membership')
+}
+
+
+
+module.exports.postMakeMember = [validatePasscode, async (req, res) => {
+    const errors = validationResult(req)
+    if(!errors.isEmpty()){
+        return res.status(400).render("membership", {
+            errors: errors.array()
+        })
+    }
+    await pool.query("UPDATE users SET ismember = TRUE WHERE id = $1", [req.user.id])
+    res.redirect("/membership")
+
+}]
+
+module.exports.deleteMember = async (req, res) => {
+    try{
+         await pool.query("UPDATE users SET ismember = FALSE WHERE id = $1", [req.user.id])
+    } catch(err){
+        console.log(err)
+    }
+   
+    res.redirect('/membership')
 }

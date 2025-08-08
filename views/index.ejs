@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html>
-  <head>
-   <title>Document</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+  <%- include('partials/header')%>
   <body>
     <% if(locals.user){%>
       <h1>Welcome, <%= user.username %></h1>
        <a href="/logout">Log Out</a>
+       <a href="/membership">Manage Membership</a>
     <% } else {%>
       <a href = "/login">Login</a>
       <a href="/sign-up">Create an account</a>

@@ -5,9 +5,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session')
-const passport = require("./authenticate")
+const passport = require("./passport")
+
 const flash = require('connect-flash')
 //get flash message working
+//expire cookie
+//access denied
+//load memberhsip page after login
+//make index.js a partial
+//add 404 page
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const pool = require("./db/pool");
@@ -33,6 +39,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+
 app.use('/users', usersRouter);
 
 
