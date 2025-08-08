@@ -7,7 +7,7 @@ var logger = require('morgan');
 const session = require('express-session')
 const passport = require("./authenticate")
 const flash = require('connect-flash')
-
+//get flash message working
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const pool = require("./db/pool");
