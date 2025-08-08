@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session')
 const passport = require("./passport")
-
 const flash = require('connect-flash')
 //get flash message working
 //expire cookie

@@ -1,0 +1,24 @@
+
+<nav class = 'navbar'>
+    <ul>
+      <li><a href="/">Home</a></li>
+     <% if(locals.user){%>
+     <li>
+              <div class="dropdown">
+                      <button class="dropbtn"><%= locals.user.username%>
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div class="dropdown-content">
+                    <a href="/logout">Logout</a>
+                    <a href="/membership">Manage Membership</a>
+                   
+                  </div>
+                </div>
+          </li>
+    <% } else {%>
+     <li><a href = "/login">Login</a></li>
+        <li><a href="/sign-up">Create an account</a></li>
+    <%}%>
+       
+    </ul>
+</nav>
