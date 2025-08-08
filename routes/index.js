@@ -10,6 +10,8 @@ router.get('/', function(req, res, next) {
 
 router.get('/sign-up', controller.getSignUp)
 router.post('/sign-up', controller.postSignUp)
+router.get('/login', controller.getLogin)
+router.post('/login', controller.postLogin)
 
 
 

@@ -1,22 +1,21 @@
 const bcrypt = require("bcryptjs")
 const pool = require('../db/pool')
 const {body, validationResult} = require('express-validator')
+const passport = require("../authenticate")
+
 //validation
 
 const validateSignup = [
     body("first_name").trim().notEmpty().withMessage('First name is required'),
     body("last_name").trim().notEmpty().withMessage('Last name is required'),
-    body("email").trim()
-    .notEmpty().withMessage('email is required')
-    .isEmail().withMessage('email must be a valid email'),
+    body("username").trim()
+    .notEmpty().withMessage('username is required'),
     body("password").trim()
     .isLength({min: 5, max: 20}).withMessage('password must be between 5 and 20 characters'),
     body("password_confirm").trim()
     .custom((value, {req}) => {
         return value == req.body.password
     }).withMessage('Passwords must match')
-
-
 ]
 
 
@@ -36,11 +35,22 @@ module.exports.postSignUp = [validateSignup, async (req, res, next) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
         await pool.query( `
-            INSERT INTO users(first_name, last_name, email, password) 
+            INSERT INTO users(first_name, last_name, username, password) 
             VALUES ($1, $2, $3, $4)
-            `, [req.body.first_name, req.body.last_name, req.body.email, hashedPassword])
-            res.redirect('/')
+            `, [req.body.first_name, req.body.last_name, req.body.username, hashedPassword])
+            res.redirect('/login')
     } catch (err) {
         next(err)
     }
 }]
+
+module.exports.getLogin = (req, res) => {
+    console.log(req.flash('error'))
+    res.render("login")
+}
+
+module.exports.postLogin = passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true
+})
