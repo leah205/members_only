@@ -17,6 +17,11 @@ var app = express();
 app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: false }));
 app.use(passport.session());
 app.use(flash())
+
+app.use((req, res, next) => {
+  res.locals.user = req.user
+  next()
+})
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

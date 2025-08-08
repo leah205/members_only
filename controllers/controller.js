@@ -19,7 +19,9 @@ const validateSignup = [
 ]
 
 
-
+module.exports.getIndex = (req, res) => {
+    res.render('index')
+}
 module.exports.getSignUp = (req, res) => {
     res.render('sign-up')
 }
