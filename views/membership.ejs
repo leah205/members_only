@@ -3,29 +3,27 @@
 <%- include('partials/header')%>
 <body>
       <%- include('partials/nav')%>
-    <p>Membership Status: 
-        <span>
-            <%if(locals.user.ismember){%> 
-                Member
-            <% }else {%> 
-                Not a member
-            <% } %>
-        </span>
-
-    </p>
-    <%if(!locals.user.ismember){%>
-    <form action="/make-member" method = 'POST'>
-        <label for="passcode">Enter Passcode(Hint: abc)</label>
-        <input type="text" id = "passcode" name = "passcode">
-        <button type = 'submit'>Submit</button>
-    </form>
-    <% } else{ %>
-        <form action="/delete-member" method = 'POST'>
-        <button type = 'submit'>Remove Membership</button>
-        </form> <% } %>
-
-
-
-    
+    <div class="membership-container">
+        <h3>Membership Status:
+            <span>
+                <%if(locals.user.ismember){%>
+                    Member
+                <% }else {%>
+                    Not a member
+                <% } %>
+            </span>
+        </h3>
+        <%if(!locals.user.ismember){%>
+        <form action="/make-member" method = 'POST'>
+            <label for="passcode">Enter Passcode(Hint: abc)</label>
+            <input type="text" id = "passcode" name = "passcode">
+            <button type = 'submit'>Submit</button>
+        </form>
+        <% } else{ %>
+            <form action="/delete-member" method = 'POST'>
+            <button type = 'submit'>Remove Membership</button>
+            </form> <% } %>
+        
+    </div>
 </body>
 </html>

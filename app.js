@@ -12,6 +12,7 @@ const flash = require('connect-flash')
 //access denied
 //load memberhsip page after login
 //add 404 page
+//admins see all and error message
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const pool = require("./db/pool");

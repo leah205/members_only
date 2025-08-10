@@ -1,9 +1,35 @@
-.form{
-    width: 300px;
-    border: 1px solid black;
-    padding: 20px;
-    margin: auto;
+*{
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
 }
+h2{
+  margin: 0
+}
+:root{
+  --button-color: rgb(162, 249, 255);
+
+}
+body{
+  background: rgb(0, 0, 0);
+  color: white;
+}
+
+button{
+  background: var(--button-color);
+  padding: 10px;
+  border: 0;
+  border-radius: 5px;
+  font-size: 1.2rem;
+}
+
+button:hover{
+  background: blue;
+}
+
 input{
     margin-bottom: 10px;
     display: block;
@@ -31,7 +57,7 @@ li{
   overflow: hidden;
 }*/
 .navbar{
-    background: black;
+    background: rgb(56, 56, 56);
     display: flex;
     justify-content: right;
     align-items: stretch;
@@ -89,8 +115,106 @@ li{
   display: block;
 }
 
+
+/*messages */
+
+.post-message textarea{
+  width: 80vw;
+  border-radius: 15px;
+  height: 100px;
+  margin: auto;
+  display: block;
+  padding: 7px;
+  font-size: 1.2rem;
+}
+.post-message{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.post-message button{
+  margin: auto;
+  width: 100px;
+}
+p{
+  margin: 5px 0
+}
+.message{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+}
+.message button{
+  background: rgb(255, 92, 92);
+}
+.message button:hover{
+  background: rgb(196, 62, 62);
+}
 .message-container .message{
-  padding: 20px 10px;
-  border: 1px solid black;
-  margin-top: 20px;
+  padding: 20px;
+  border: 5px solid white;
+  font-size:1.3rem;
+  border-radius: 15px;
+  width: 80%;
+  margin: 20px auto;
+}
+h1{
+  text-align: center;
+}
+/*
+membership/admin
+*/
+.membership-container, .admin-container{
+  width: min(50vw, 500px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid white;
+  padding: 20px;
+  margin: 50px auto;
+  border-radius: 20px;
+}
+
+.membership-container h3, .admin-container h3{
+  font-size: 1.5rem;
+}
+form{
+  font-size: 1.2rem;
+}
+form input{
+  margin-top: 5px;
+  
+}
+.membership-container form, .admin-container form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.membership-container form input{
+  width: min(80%, 300px);
+  height: 30px;
+  border-radius: 10px;
+}
+.check-container{
+  display: flex;
+}
+/* login and sign up*/
+.form{
+
+    width: 300px;
+    border: 3px solid white;
+    padding: 20px;
+    margin: 50px auto;
+    border-radius: 20px;
+     
+    
+}
+.form input{
+  height: 20px;
+  padding: 5px;
+  width: 80%;
+  border-radius: 7px;
 }
