@@ -1,7 +1,7 @@
-const bcrypt = require("bcryptjs")
-const pool = require('../db/pool')
+
 const {body, validationResult} = require('express-validator')
 const passport = require("../passport")
+const db = require('../db/queries')
 
 
 //validation
@@ -36,18 +36,14 @@ module.exports.getSignUp = (req, res) => {
 module.exports.postSignUp = [validateSignup, async (req, res, next) => {
     const errors = validationResult(req)
     if(!errors.isEmpty()){
-        console.log('hello')
+     
         return res.status(400).render("sign-up", {
             errors: errors.array()
         })
     }
     try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10)
-        await pool.query( `
-            INSERT INTO users(first_name, last_name, username, password) 
-            VALUES ($1, $2, $3, $4)
-            `, [req.body.first_name, req.body.last_name, req.body.username, hashedPassword])
-            res.redirect('/login')
+        await db.signUp(req.body)
+        res.redirect('/login')
     } catch (err) {
         next(err)
     }
@@ -94,17 +90,20 @@ module.exports.postMakeMember = [validatePasscode, async (req, res) => {
             errors: errors.array()
         })
     }
-    await pool.query("UPDATE users SET ismember = TRUE WHERE id = $1", [req.user.id])
+    await db.makeMember(req.user.id)
+    
     res.redirect("/membership")
 
 }]
 
 module.exports.deleteMember = async (req, res) => {
     try{
-         await pool.query("UPDATE users SET ismember = FALSE WHERE id = $1", [req.user.id])
+        await db.deleteMember(req.user.id)
+     
     } catch(err){
         console.log(err)
     }
    
     res.redirect('/membership')
 }
+
