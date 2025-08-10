@@ -11,9 +11,13 @@
       </form>
     <% } else {%>
     <%}%>
-
+      <h1>Messages</h1>
     <div class="message-container">
-
+        <% locals.messages.forEach((message) => {%>
+            <div class="message">
+             <%=  message.text %>
+            </div>
+        <% }) %>
     </div>
   </body>
 </html>

@@ -26,8 +26,17 @@ const validatePasscode = [
 ]
 
 
-module.exports.getIndex = (req, res) => {
-    res.render('index')
+module.exports.getIndex = async (req, res) => {
+    try {
+        const messages = await db.selectAnonymousMessages()
+        console.log(messages)
+         res.render('index', {messages: messages})
+    } catch(err) {
+        console.error(err)
+        next(err)
+    }
+    
+   
 }
 module.exports.getSignUp = (req, res) => {
     res.render('sign-up')
@@ -102,6 +111,7 @@ module.exports.deleteMember = async (req, res) => {
      
     } catch(err){
         console.error(err)
+        next(err)
     }
    
     res.redirect('/membership')
@@ -118,5 +128,6 @@ module.exports.postMessage = async (req, res) => {
         res.redirect('/')
     } catch (err){
         console.error(err)
+        next(err)
     }
 }

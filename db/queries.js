@@ -1,6 +1,18 @@
 const bcrypt = require("bcryptjs")
 const pool = require('../db/pool')
 
+
+
+module.exports.selectAnonymousMessages = async () => {
+    try{
+         const {rows} = await pool.query(`SELECT text FROM messages`)
+         console.log(rows)
+         return rows
+    } catch (err){
+        throw new Error(err)
+    }
+   
+}
 module.exports.signUp =  async ({first_name,last_name, username, password}) => {
     try{
         const hashedPassword = await bcrypt.hash(password, 10)
@@ -39,5 +51,7 @@ module.exports.postMessage = async (message, user_id, date) => {
         throw new Error(err)
     }
 }
+
+
     
    
