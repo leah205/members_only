@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/header')%>
+<body>
+      <%- include('partials/nav')%>
+    <p>Role: 
+        <span>
+            <%if(locals.user.is_admin){%> 
+                Admin
+            <% }else {%> 
+                User
+            <% } %>
+        </span>
+
+    </p>
+    <%if(!locals.user.is_admin){%>
+        <h2>Become an admin: </h2>
+    <form action="/make-admin" method = 'POST'>
+        <label for="admin">Do you pinky promise to be a good admin?</label>
+        <input type="checkbox" id="admin" name="admin" value="true">
+        <button type = 'submit'>Submit</button>
+    </form>
+    <% } else{ %>
+        <form action="/delete-admin" method = 'POST'>
+        <button type = 'submit'>Remove admin</button>
+        </form> <% } %>
+
+
+ 
+    
+</body>
+</html>

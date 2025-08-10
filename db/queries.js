@@ -66,6 +66,22 @@ module.exports.postMessage = async (message, user_id, date) => {
     }
 }
 
+module.exports.makeAdmin = async (id) => {
+    try{
+        await pool.query("UPDATE users SET is_admin = TRUE WHERE id = $1", [id])
+    } catch (err) {
+        throw new Error(err)
+    }
+    
+}
+
+module.exports.deleteAdmin = async (id) => {
+     try{
+        await pool.query("UPDATE users SET is_admin = FALSE WHERE id = $1", [id])
+    } catch (err) {
+        throw new Error(err)
+    }
+}
 
     
    

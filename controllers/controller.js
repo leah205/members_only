@@ -25,6 +25,10 @@ const validatePasscode = [
     .equals("abc")
 ]
 
+const validateAdmin = [
+    body("admin").equals("true")
+]
+
 
 module.exports.getIndex = async (req, res, next) => {
     try {
@@ -130,4 +134,35 @@ module.exports.postMessage = async (req, res, next) => {
         console.error(err)
         next(err)
     }
+}
+
+module.exports.getAdmin = async (req, res, next) => {
+    res.render('admin')
+}
+
+module.exports.postMakeAdmin = [validateAdmin, async (req, res, next) => {
+     const errors = validationResult(req)
+    if(!errors.isEmpty()){
+        return res.status(400).render("admin", {
+            errors: errors.array()
+        })
+    }
+    try{
+         await db.makeAdmin(req.user.id)
+    } catch (err) {
+       
+        next(err)
+    }
+   
+    res.redirect("/admin")
+}]
+
+module.exports.postDeleteAdmin = async (req, res, next) => {
+    try{
+         await db.deleteAdmin(req.user.id)
+    } catch (err){
+        next(err)
+    }
+    res.redirect('/admin')
+   
 }
