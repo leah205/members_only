@@ -218,3 +218,10 @@ form input{
   width: 80%;
   border-radius: 7px;
 }
+
+/* 404 */
+.err-msg{
+  font-size: 1.7rem;
+  margin-top: 10px;
+  text-align: center;
+}
