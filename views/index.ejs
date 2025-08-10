@@ -5,9 +5,15 @@
     <%- include('partials/nav')%>
     <% if(locals.user){%>
       <h1>Welcome back, <%=  locals.user.first_name%> <%=  locals.user.last_name%></h1>
+      <form action="/post-message" metHod = 'POST'>
+        <textarea name="message" id="message"></textarea>
+        <button type = 'submit'>Post</button>
+      </form>
     <% } else {%>
-      
-    
     <%}%>
+
+    <div class="message-container">
+
+    </div>
   </body>
 </html>

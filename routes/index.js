@@ -13,6 +13,7 @@ router.get('/logout', controller.getLogout)
 router.get('/membership', controller.isAuth, controller.getMembership)
 router.post('/make-member', controller.postMakeMember)
 router.post('/delete-member', controller.deleteMember)
+router.post('/post-message', controller.postMessage)
 
 
 

@@ -101,9 +101,22 @@ module.exports.deleteMember = async (req, res) => {
         await db.deleteMember(req.user.id)
      
     } catch(err){
-        console.log(err)
+        console.error(err)
     }
    
     res.redirect('/membership')
 }
 
+function formatDate(date){
+    return date.toISOString().slice(0,19).replace("T", " ")
+  
+}
+
+module.exports.postMessage = async (req, res) => {
+    try {
+        await db.postMessage(req.body.message, req.user.id,  formatDate(new Date()))
+        res.redirect('/')
+    } catch (err){
+        console.error(err)
+    }
+}

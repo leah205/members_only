@@ -30,5 +30,14 @@ module.exports.deleteMember = async (id) => {
     
 }
 
+module.exports.postMessage = async (message, user_id, date) => {
+    query = `INSERT INTO messages (text, user_id, date_posted)
+    VALUES ($1, $2, $3)`
+     try{
+         await pool.query(query, [message, user_id, date])
+    } catch (err) {
+        throw new Error(err)
+    }
+}
     
    
