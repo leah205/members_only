@@ -26,9 +26,9 @@ const validatePasscode = [
 ]
 
 
-module.exports.getIndex = async (req, res) => {
+module.exports.getIndex = async (req, res, next) => {
     try {
-        const messages = await db.selectAnonymousMessages()
+        const messages = await db.selectMessages()
         console.log(messages)
          res.render('index', {messages: messages})
     } catch(err) {
@@ -105,7 +105,7 @@ module.exports.postMakeMember = [validatePasscode, async (req, res) => {
 
 }]
 
-module.exports.deleteMember = async (req, res) => {
+module.exports.deleteMember = async (req, res, next) => {
     try{
         await db.deleteMember(req.user.id)
      
@@ -122,7 +122,7 @@ function formatDate(date){
   
 }
 
-module.exports.postMessage = async (req, res) => {
+module.exports.postMessage = async (req, res, next) => {
     try {
         await db.postMessage(req.body.message, req.user.id,  formatDate(new Date()))
         res.redirect('/')

@@ -11,7 +11,6 @@ const flash = require('connect-flash')
 //expire cookie
 //access denied
 //load memberhsip page after login
-//make index.js a partial
 //add 404 page
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');

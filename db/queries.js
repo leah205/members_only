@@ -11,8 +11,22 @@ module.exports.selectAnonymousMessages = async () => {
     } catch (err){
         throw new Error(err)
     }
-   
 }
+
+module.exports.selectMessages = async () => {
+    query = `SELECT messages.text, users.first_name, users.last_name, messages.date_posted
+     FROM messages JOIN users 
+    ON messages.user_id = users.id
+    `
+     try{
+         const {rows} = await pool.query(query)
+       
+         return rows
+    } catch (err){
+        throw new Error(err)
+    }
+}
+
 module.exports.signUp =  async ({first_name,last_name, username, password}) => {
     try{
         const hashedPassword = await bcrypt.hash(password, 10)

@@ -15,7 +15,12 @@
     <div class="message-container">
         <% locals.messages.forEach((message) => {%>
             <div class="message">
-             <%=  message.text %>
+               <% if(locals.user && locals.user.ismember){ %> 
+             
+                <p><%=message.first_name%> <%=message.last_name%></p>
+                <p><%=message.date_posted%></p>
+               <%}%>
+             <p><%=  message.text %></p>
             </div>
         <% }) %>
     </div>
