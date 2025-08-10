@@ -14,7 +14,7 @@ module.exports.selectAnonymousMessages = async () => {
 }
 
 module.exports.selectMessages = async () => {
-    query = `SELECT messages.text, users.first_name, users.last_name, messages.date_posted
+    query = `SELECT messages.text, users.first_name, users.last_name, messages.date_posted, messages.id AS message_id
      FROM messages JOIN users 
     ON messages.user_id = users.id
     `
@@ -78,6 +78,14 @@ module.exports.makeAdmin = async (id) => {
 module.exports.deleteAdmin = async (id) => {
      try{
         await pool.query("UPDATE users SET is_admin = FALSE WHERE id = $1", [id])
+    } catch (err) {
+        throw new Error(err)
+    }
+}
+
+module.exports.deleteMessage = async (id) => {
+     try{
+        await pool.query("DELETE FROM messages WHERE id = $1", [id])
     } catch (err) {
         throw new Error(err)
     }

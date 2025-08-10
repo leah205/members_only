@@ -15,12 +15,20 @@
     <div class="message-container">
         <% locals.messages.forEach((message) => {%>
             <div class="message">
-               <% if(locals.user && locals.user.ismember){ %> 
-             
-                <p><%=message.first_name%> <%=message.last_name%></p>
-                <p><%=message.date_posted%></p>
-               <%}%>
-             <p><%=  message.text %></p>
+               <div class="message-details">
+                 <% if(locals.user && locals.user.ismember){ %>
+                  <p><%=message.first_name%> <%=message.last_name%></p>
+                  <p><%=message.date_posted%></p>
+                 <%}%>
+                  <p><%=  message.text %></p>
+               </div>
+                 <% if(locals.user && locals.user.is_admin){ %>
+                  <form action="/delete-message" method = 'POST' class="delete-message-form">
+                    <input type="hidden" name = "message_id" value = <%= message.message_id %> >
+                    <button type ='submit'>Delete</button>
+                  </form>
+                  <%}%>
+
             </div>
         <% }) %>
     </div>

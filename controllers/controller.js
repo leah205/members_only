@@ -163,6 +163,14 @@ module.exports.postDeleteAdmin = async (req, res, next) => {
     } catch (err){
         next(err)
     }
-    res.redirect('/admin')
-   
+    res.redirect('/admin') 
+}
+
+module.exports.deleteMessage = async (req, res, next) => {
+    try {
+        await db.deleteMessage(req.body.message_id)
+    } catch (err){
+        next(err)
+    }
+    res.redirect('/')
 }
