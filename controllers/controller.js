@@ -63,15 +63,18 @@ module.exports.postSignUp = [validateSignup, async (req, res, next) => {
 }]
 
 module.exports.getLogin = (req, res) => {
-    
-    res.render("login", {errors: [{msg: req.flash('error')[0]}]})
+   
+    res.render("login", {errors: [{msg: req.flash('error')[0]}], redirect: req.query.redirect || "/"})
 }
 
-module.exports.postLogin = passport.authenticate("local", {
-    successRedirect: "/",
+module.exports.postLogin = (req, res,next) => {
+    console.log(req.body.redirect)
+    passport.authenticate("local", {
+    successRedirect: req.body.redirect,
     failureRedirect: "/login",
     failureFlash: true
-})
+})(req, res, next)
+}
 
 module.exports.getLogout = (req, res, next) => {
     req.logout((err) => {
@@ -86,7 +89,8 @@ module.exports.isAuth = async (req, res, next) => {
     if(req.isAuthenticated()){
         next()
     } else {
-        res.redirect('/login')
+
+        res.redirect(`/login?redirect=${req.path}`)
     }
 }
 
