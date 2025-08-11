@@ -8,17 +8,21 @@ const session = require('express-session')
 const passport = require("./passport")
 const flash = require('connect-flash')
 
-//expire cookie
-//access denied
 
-//check overflow make message deets smaller
+//message to login or become member
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const pool = require("./db/pool");
 
 var app = express();
 
-app.use(session({ secret: process.env.SECRET, resave: false, saveUninitialized: false }));
+app.use(session({ 
+  secret: process.env.SECRET, resave: false, saveUninitialized: false,
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000 * 7
+  }
+ }));
 app.use(passport.session());
 app.use(flash())
 
