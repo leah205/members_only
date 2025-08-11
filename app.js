@@ -7,7 +7,7 @@ var logger = require('morgan');
 const session = require('express-session')
 const passport = require("./passport")
 const flash = require('connect-flash')
-//get flash message working - add to errors object
+
 //expire cookie
 //access denied
 //load memberhsip page after login

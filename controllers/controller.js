@@ -63,8 +63,8 @@ module.exports.postSignUp = [validateSignup, async (req, res, next) => {
 }]
 
 module.exports.getLogin = (req, res) => {
-
-    res.render("login", {errors: [{msg: req.flash('error')}]})
+    
+    res.render("login", {errors: [{msg: req.flash('error')[0]}]})
 }
 
 module.exports.postLogin = passport.authenticate("local", {
