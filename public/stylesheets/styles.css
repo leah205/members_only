@@ -248,3 +248,19 @@ color: rgb(241, 0, 0);
   width: min(500px, 80vw);
   margin-bottom: 10px;
 }
+.login-message, .member-message{
+  border: 1px solid var(--button-color);
+  background: rgba(162, 249, 255, 0.5);;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+ color: var(--button-color);
+  height: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  width: min(500px, 80vw);
+  margin: 20px auto;
+
+}

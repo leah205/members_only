@@ -5,7 +5,20 @@
     <%- include('partials/nav')%>
     <% if(locals.user){%>
       <h1>Welcome back, <%=  locals.user.first_name%> <%=  locals.user.last_name%></h1>
-      
+        <%}%>
+
+       <% if(!locals.user){%>
+          <div class = 'login-message'>
+            <p>Log in to post messages</p>
+          </div>
+         <%}%>
+         <% if(locals.user && ! locals.user.ismember){%>
+          <div class = 'member-message'>
+            <p>Become a member to view message details</p>
+          </div>
+         <%}%>
+
+         <% if(locals.user){%>
       <form action="/post-message" metHod = 'POST' class = 'post-message'>
         <h2>New Message:</h2>
         <textarea name="message" id="message"></textarea>
@@ -13,6 +26,8 @@
       </form>
     <% } else {%>
     <%}%>
+      
+
       <h1>Messages</h1>
     <div class="message-container">
         <% locals.messages.forEach((message) => {%>
