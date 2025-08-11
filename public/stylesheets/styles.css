@@ -144,6 +144,7 @@ p{
   display: flex;
   justify-content: space-between;
   padding: 10px;
+  gap: 30px;
   align-items: center;
 }
 .message button{
@@ -151,6 +152,11 @@ p{
 }
 .message button:hover{
   background: rgb(196, 62, 62);
+}
+.message p{
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word
 }
 .message-container .message{
   padding: 20px;

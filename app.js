@@ -10,7 +10,7 @@ const flash = require('connect-flash')
 
 //expire cookie
 //access denied
-//admins see all and error message
+
 //check overflow make message deets smaller
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
