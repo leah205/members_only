@@ -6,7 +6,7 @@ const pool = require('../db/pool')
 module.exports.selectAnonymousMessages = async () => {
     try{
          const {rows} = await pool.query(`SELECT text FROM messages`)
-         console.log(rows)
+        
          return rows
     } catch (err){
         throw new Error(err)

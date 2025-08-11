@@ -33,10 +33,10 @@ const validateAdmin = [
 module.exports.getIndex = async (req, res, next) => {
     try {
         const messages = await db.selectMessages()
-        console.log(messages)
+       
          res.render('index', {messages: messages})
     } catch(err) {
-        console.error(err)
+    
         next(err)
     }
     
@@ -63,8 +63,8 @@ module.exports.postSignUp = [validateSignup, async (req, res, next) => {
 }]
 
 module.exports.getLogin = (req, res) => {
-    console.log(req.flash('error'))
-    res.render("login")
+
+    res.render("login", {errors: [{msg: req.flash('error')}]})
 }
 
 module.exports.postLogin = passport.authenticate("local", {
@@ -114,7 +114,7 @@ module.exports.deleteMember = async (req, res, next) => {
         await db.deleteMember(req.user.id)
      
     } catch(err){
-        console.error(err)
+        
         next(err)
     }
    
@@ -131,7 +131,7 @@ module.exports.postMessage = async (req, res, next) => {
         await db.postMessage(req.body.message, req.user.id,  formatDate(new Date()))
         res.redirect('/')
     } catch (err){
-        console.error(err)
+    
         next(err)
     }
 }

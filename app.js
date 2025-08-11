@@ -11,7 +11,6 @@ const flash = require('connect-flash')
 //expire cookie
 //access denied
 //load memberhsip page after login
-//add 404 page
 //admins see all and error message
 //check overflow make message deets smaller
 var indexRouter = require('./routes/index');

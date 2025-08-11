@@ -24,14 +24,14 @@ passport.use(
       const user = rows[0]
       if(!user){
         console.log("incorrect username")
-        return done(null, false, {msg: "incorrect username"})
+        return done(null, false, {message: "incorrect username"})
       }
       const match = await bcrypt.compare(password, user.password)
       console.log(password)
       console.log(user.password)
       if(!match){
         console.log("incorrect password")
-        return done(null, false, {msg: "incorrect password"})
+        return done(null, false, {message: "incorrect password"})
       }
       console.log("success")
       return done(null, user)

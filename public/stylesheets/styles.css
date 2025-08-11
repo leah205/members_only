@@ -225,3 +225,20 @@ form input{
   margin-top: 10px;
   text-align: center;
 }
+/* validation errors */
+.errors-list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.errors-list li{
+  border: 1px solid red;
+  background: rgba(255, 0, 0, 0.5);
+color: rgb(241, 0, 0);
+  height: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  width: min(500px, 80vw);
+  margin-bottom: 10px;
+}
