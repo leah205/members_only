@@ -22,11 +22,11 @@ const validateSignup = [
 
 const validatePasscode = [
     body("passcode").trim()
-    .equals("abc")
+    .equals("abc").withMessage("Incorrect passcode")
 ]
 
 const validateAdmin = [
-    body("admin").equals("true")
+    body("admin").equals("true").withMessage("Please pinky promise :)")
 ]
 
 
@@ -40,8 +40,8 @@ module.exports.getIndex = async (req, res, next) => {
         next(err)
     }
     
-   
 }
+console.log('hello')
 module.exports.getSignUp = (req, res) => {
     res.render('sign-up')
 }
@@ -146,6 +146,7 @@ module.exports.getAdmin = async (req, res, next) => {
 
 module.exports.postMakeAdmin = [validateAdmin, async (req, res, next) => {
      const errors = validationResult(req)
+     
     if(!errors.isEmpty()){
         return res.status(400).render("admin", {
             errors: errors.array()
@@ -154,7 +155,6 @@ module.exports.postMakeAdmin = [validateAdmin, async (req, res, next) => {
     try{
          await db.makeAdmin(req.user.id)
     } catch (err) {
-       
         next(err)
     }
    
