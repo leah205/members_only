@@ -9,7 +9,7 @@ const passport = require("./passport")
 const flash = require('connect-flash')
 
 
-//message to login or become member
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');

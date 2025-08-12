@@ -27,7 +27,7 @@ button{
 }
 
 button:hover{
-  background: blue;
+  background: rgb(81, 176, 183);
 }
 
 input{
@@ -82,7 +82,7 @@ li{
 
 /* Add a red background color to navbar links on hover */
 .navbar a:hover, .dropdown:hover .dropbtn {
-  background: blue
+  background: rgb(81, 176, 183);
 }
 
 /* Dropdown content (hidden by default) */
@@ -172,6 +172,22 @@ h1{
 /*
 membership/admin
 */
+
+input[type='checkbox'] {
+    width:30px;
+    height:30px;
+    background:white;
+    border-radius:5px;
+    border:2px solid #555;
+}
+input[type='checkbox']:checked {
+    background: #abd;
+}
+.check-container{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .membership-container, .admin-container{
   width: min(50vw, 500px);
   display: flex;
