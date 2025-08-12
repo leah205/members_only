@@ -9,12 +9,12 @@
 
        <% if(!locals.user){%>
           <div class = 'login-message'>
-            <p>Log in to post messages</p>
+            <p><a href="/login">Log in</a> to post messages</p>
           </div>
          <%}%>
          <% if(locals.user && ! locals.user.ismember){%>
           <div class = 'member-message'>
-            <p>Become a member to view message details</p>
+            <p><a href="/membership">Become a member</a> to view message details</p>
           </div>
          <%}%>
 

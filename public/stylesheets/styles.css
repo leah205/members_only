@@ -117,7 +117,9 @@ li{
 
 
 /*messages */
-
+p a{
+  color: var(--button-color)
+}
 .post-message textarea{
   width: 80vw;
   border-radius: 15px;
